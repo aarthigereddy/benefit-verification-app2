@@ -33,10 +33,13 @@ trigger CareBenefitVerifyRequestTrigger on CareBenefitVerifyRequest__c (before i
                 newRequestIds.add(req.Id);
             }
         }
-        if (!newRequestIds.isEmpty()) {
+       /* if (!newRequestIds.isEmpty()) {
             for (Id reqId : newRequestIds) {
                 BenefitVerificationCallout.sendForVerification(reqId);
             }
-        }
+        }*/
+if (!newRequestIds.isEmpty()) {
+        BenefitVerificationCalloutHandler.processBenefitVerificationCallouts(newRequestIds);
+    }
     }
 } 
